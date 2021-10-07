@@ -1,0 +1,18 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "application to build a team website",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "steven-sosebee",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
