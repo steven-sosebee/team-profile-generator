@@ -55,6 +55,8 @@ const newEmployee = (
 newTeam()
     .then((teamData) => {
         if (teamData.blnNewTeam) {
+            fs.writeFileSync("./dist/team.txt", "", "utf8")
+            fs.writeFileSync("./dist/teamName.txt", teamData.teamName, "utf8")
             console.log(`Please enter information about ${teamData.teamName}'s manager:`);
             addManager()
                 .then(() => {

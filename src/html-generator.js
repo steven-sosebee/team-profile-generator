@@ -9,7 +9,7 @@ const htmlTemplate = (data) => {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>${teamData[i].name} Roster</title>
 </head>
 <body>
     
@@ -20,36 +20,34 @@ const htmlTemplate = (data) => {
 const generateHTML = (async () =>
         file.readFile()
         .then((data) => {
-            console.log(data);
+            const teamName = fs.readFileSync("./dist/teamName.txt", "utf-8");
             let teamData = JSON.parse(data);
-            console.log(teamData);
             var htmlData = "";
             var htmlHeader = "";
             for (i = 0; i < teamData.length; i++){
                 switch (teamData[i].role) {
                     case "Intern":
                         htmlData =htmlData + `
-                        <div class="card">
-                            <div class="card-header">${teamData[i].name}</div>
+                        <div class="card w-25">
+                            <div class="card-header bg-primary text-light">${teamData[i].name}</div>
                             <div class="card-body">${teamData[i].role}</div>
-                            <div class="card-body">${teamData[i].email}</div>
-                            <div class="card-body">${teamData[i].school}</div>
+                            <div class="card-body"><a href="mailto:${teamData[i].email}"><i class="fa fa-envelope" aria-hidden="true"></i>  ${teamData[i].email}</a></div>
+                            <div class="card-body"><i class="fas fa-school"></i>  ${teamData[i].school}</div>
                         </div>`
                         break;
                     case "Engineer":
                         htmlData=htmlData +
-                        `<div class="card">
-                            <div class="card-header">${teamData[i].name}</div>
+                        `<div class="card w-25">
+                            <div class="card-header bg-primary text-light">${teamData[i].name}</div>
                             <div class="card-body">${teamData[i].role}</div>
-                            <div class="card-body">${teamData[i].email}</div>
-                            <div class="card-body">${teamData[i].gitHubAcct}</div>
+                            <div class="card-body"><i class="fa fa-envelope" aria-hidden="true"></i>  ${teamData[i].email}</div>
+                            <div class="card-body"><a href="https://github.com/${teamData[i].gitHubAcct}" target="blank"><i class="fab fa-github-square"></i>  ${teamData[i].gitHubAcct}</a></div>
                         </div>`
                         break;
                     case "Manager":
                         htmlHeader = `
-                        <div class="jumbotron"><h1>${teamData[i].name}</h1></div>`
+                        <div class="jumbotron"><h1>${teamName}</h1><div><h1>Team Manager: ${teamData[i].name}</h1><h2>Direct Phone Number: ${teamData[i].officeNumber}</h2></div></div>`
                 }
-                htmlData =htmlData + `<div><h5>${teamData[i].name}</h5></div>`
             }
             fs.writeFileSync("./dist/index.html", `
             <!DOCTYPE html>
@@ -59,12 +57,25 @@ const generateHTML = (async () =>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Document</title>
+                <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                />
+                <link
+                rel="stylesheet"
+                href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+                integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+                crossorigin="anonymous"
+                />
             </head>
             <body>
                 ${htmlHeader}
+                <div class="container-fluid col-6 center-items">
                 ${htmlData}
+                </div>
             </body>
             </html>
             `)}));
 
+// generateHTML();
 module.exports = { generateHTML };
