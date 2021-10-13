@@ -1,0 +1,1 @@
+[{"name":"Steven","ID":"1","email":"steven@company.com","role":"Manager","officeNumber":"9195555555"},{"name":"Kate","ID":"2","email":"kate@company.com","role":"Intern","school":"UNC"},{"name":"Ryan","ID":"3","email":"ryan@company.com","role":"Engineer","gitHubAcct":"ryan-the-fire-guy"}]
