@@ -28,7 +28,7 @@ const generateHTML = (async () =>
                 switch (teamData[i].role) {
                     case "Intern":
                         htmlData =htmlData + `
-                        <div class="card w-25">
+                        <div class="card">
                             <div class="card-header bg-primary text-light">${teamData[i].name}</div>
                             <div class="card-body">${teamData[i].role}</div>
                             <div class="card-body"><a href="mailto:${teamData[i].email}"><i class="fa fa-envelope" aria-hidden="true"></i>  ${teamData[i].email}</a></div>
@@ -37,10 +37,10 @@ const generateHTML = (async () =>
                         break;
                     case "Engineer":
                         htmlData=htmlData +
-                        `<div class="card w-25">
+                        `<div class="card">
                             <div class="card-header bg-primary text-light">${teamData[i].name}</div>
                             <div class="card-body">${teamData[i].role}</div>
-                            <div class="card-body"><i class="fa fa-envelope" aria-hidden="true"></i>  ${teamData[i].email}</div>
+                            <div class="card-body"><a href="mailto:${teamData[i].email}"><i class="fa fa-envelope" aria-hidden="true"></i>  ${teamData[i].email}</a></div>
                             <div class="card-body"><a href="https://github.com/${teamData[i].gitHubAcct}" target="blank"><i class="fab fa-github-square"></i>  ${teamData[i].gitHubAcct}</a></div>
                         </div>`
                         break;
@@ -70,7 +70,7 @@ const generateHTML = (async () =>
             </head>
             <body>
                 ${htmlHeader}
-                <div class="container-fluid col-6 center-items">
+                <div class="col-6 container-fluid row justify-content-center">
                 ${htmlData}
                 </div>
             </body>
